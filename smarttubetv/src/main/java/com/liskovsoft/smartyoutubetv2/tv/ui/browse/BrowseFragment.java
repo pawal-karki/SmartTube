@@ -534,11 +534,12 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
     }
 
     /**
-     * Rows start after the sidebar: skeleton must not sit under it. Collapsed rows are ~10dp to the left.
+     * Skeleton starts where the rows do: after the open sidebar, or right after the icon rail when it is collapsed.
      */
     private void updateSkeletonLeft(boolean sidebarOpen) {
-        int rowsStartDp = Math.round(getResources().getDimension(R.dimen.lb_browse_rows_margin_start) / getResources().getDisplayMetrics().density);
-        mProgressBarManager.setSkeletonLeft(sidebarOpen ? rowsStartDp : rowsStartDp - 10);
+        float density = getResources().getDisplayMetrics().density;
+        int dimen = sidebarOpen ? R.dimen.lb_browse_rows_margin_start : R.dimen.lb_browse_rail_width;
+        mProgressBarManager.setSkeletonLeft(Math.round(getResources().getDimension(dimen) / density));
     }
 
     @Override
@@ -549,6 +550,7 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
             callback = () -> {
                 // Skeleton only stands in for an empty page. Loading more rows shows nothing (YouTube TV style).
                 if (mSectionFragmentFactory.getCurrentFragment() == null || mSectionFragmentFactory.isEmpty()) {
+                    updateSkeletonLeft(isShowingHeaders()); // the sidebar may already be collapsed
                     mProgressBarManager.show();
                 }
             };
