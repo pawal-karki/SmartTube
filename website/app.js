@@ -1,3 +1,4 @@
+window.__rv = 1;
 // Entrances: parts of each section rise in as they scroll into view.
 const rv = document.querySelectorAll('.rv');
 if ('IntersectionObserver' in window) {
@@ -42,3 +43,12 @@ document.querySelectorAll('#pick input').forEach((r) => r.addEventListener('chan
   go.href = base + r.value + '.apk';
   document.getElementById('pick-note').textContent = notes[r.value];
 }));
+
+// Copy the release link for the Downloader app.
+const copyBtn = document.getElementById('copy');
+const linkEl = document.getElementById('dl-link');
+copyBtn.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(linkEl.value); } catch { linkEl.select(); document.execCommand('copy'); }
+  copyBtn.textContent = 'Copied';
+  setTimeout(() => { copyBtn.textContent = 'Copy link'; }, 2000);
+});

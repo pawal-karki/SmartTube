@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SmartTube for slow TVs</title>
 <meta name="description" content="A TV-first video client for Android TV and TV boxes, tuned for weak hardware. Free APK download.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff2a36'/%3E%3Crect x='7' y='9' width='18' height='14' rx='4' fill='none' stroke='%230f0f0f' stroke-width='3'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0f0f0f">
+<meta property="og:title" content="SmartTube for slow TVs">
+<meta property="og:description" content="Smooth video on slow TVs. A TV-first interface tuned for four-core, 2 GB hardware. Free APK.">
+<meta property="og:image" content="img/home-rail.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__rv)document.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')})},2500)</script>
 </head>
 <body>
 
@@ -33,7 +38,7 @@
     <a class="btn rv" style="--i:2" href="https://github.com/pawal-karki/SmartTube/releases/latest">Download the APK</a>
   </div>
   <figure class="hero-shot">
-    <img class="a" src="img/home-rail.jpg" width="1920" height="1080" alt="The home screen with the sidebar collapsed to an icon rail.">
+    <img class="a" fetchpriority="high" src="img/home-rail.jpg" width="1920" height="1080" alt="The home screen with the sidebar collapsed to an icon rail.">
     <img class="b" src="img/home-sidebar.jpg" width="1920" height="1080" alt="The same screen with the sidebar open and a white pill on Home." aria-hidden="true">
   </figure>
 </section>
@@ -41,9 +46,9 @@
 <section class="try" id="try" aria-labelledby="try-h">
   <figure class="stage" id="stage">
     <img class="on" src="img/home-rail.jpg" width="1920" height="1080" alt="Home with the sidebar collapsed to an icon rail." data-name="Home" data-text="The sidebar sits as a rail of icons so the rows get the screen. Every card is a rounded 16:9 thumbnail with two lines of title, then the channel and views.">
-    <img src="img/home-sidebar.jpg" width="1920" height="1080" alt="Home with the sidebar open, a white pill on Home." data-name="Sidebar" data-text="Move left and the rail opens with labels and a white pill on the current page. The top bar with the mic and search follows it.">
-    <img src="img/shorts.jpg" width="1920" height="1080" alt="Shorts as a grid of tall rounded cards." data-name="Shorts" data-text="Shorts get their own grid of tall cards. Titles are cut at two lines, channel and handle underneath.">
-    <img src="img/gaming.jpg" width="1920" height="1080" alt="The Gaming page with 4K chips under the first two videos." data-name="Gaming" data-text="Category pages reuse the same cards. Small grey chips mark 4K and Auto-dubbed before the view count.">
+    <img src="img/home-sidebar.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Home with the sidebar open, a white pill on Home." data-name="Sidebar" data-text="Move left and the rail opens with labels and a white pill on the current page. The top bar with the mic and search follows it.">
+    <img src="img/shorts.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Shorts as a grid of tall rounded cards." data-name="Shorts" data-text="Shorts get their own grid of tall cards. Titles are cut at two lines, channel and handle underneath.">
+    <img src="img/gaming.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="The Gaming page with 4K chips under the first two videos." data-name="Gaming" data-text="Category pages reuse the same cards. Small grey chips mark 4K and Auto-dubbed before the view count.">
   </figure>
   <div class="try-side">
     <div class="tabs" role="tablist" aria-label="Screens">
@@ -54,11 +59,11 @@
     </div>
     <div>
       <h2 id="try-h" class="rv">Four screens, one remote</h2>
-      <p id="try-text" class="rv" style="--i:1">The sidebar sits as a rail of icons so the rows get the screen. Every card is a rounded 16:9 thumbnail with two lines of title, then the channel and views.</p>
+      <p id="try-text" aria-live="polite" class="rv" style="--i:1">The sidebar sits as a rail of icons so the rows get the screen. Every card is a rounded 16:9 thumbnail with two lines of title, then the channel and views.</p>
     </div>
     <div class="cells">
-      <button class="cell" id="prev" type="button">&larr; Previous screen</button>
-      <button class="cell alt" id="next" type="button">Next screen &rarr;</button>
+      <button class="cell" id="prev" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5"/></svg>Previous screen</button>
+      <button class="cell alt" id="next" type="button">Next screen<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></button>
     </div>
   </div>
 </section>
@@ -84,6 +89,34 @@
     <div class="seg s2"><p class="dur">A few minutes</p><p>Then move it to the TV with a USB stick, or open the link in the Downloader app.</p></div>
     <div class="seg s3"><p class="dur">One minute</p><p>Last, open it from the file manager and allow installs from unknown sources.</p></div>
   </div>
+</section>
+
+<section class="help" id="sideload" aria-labelledby="help-h">
+  <h2 id="help-h" class="rv">Install it on the TV</h2>
+  <div class="help-grid">
+    <div class="how rv">
+      <h3>With the Downloader app</h3>
+      <ol>
+        <li>Install Downloader from your TV's app store.</li>
+        <li>Open it, select the address field, and type the link below.</li>
+        <li>When it asks, allow Downloader to install apps, then choose Install.</li>
+      </ol>
+    </div>
+    <div class="how rv" style="--i:1">
+      <h3>With a USB stick</h3>
+      <ol>
+        <li>Copy the APK file onto a USB stick on your computer.</li>
+        <li>Plug it into the TV and open it with a file manager app.</li>
+        <li>Select the file, allow installs from that app if asked, then choose Install.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="linkbox rv" style="--i:2" data-ui>
+    <label for="dl-link">Download link</label>
+    <input id="dl-link" type="text" readonly value="https://github.com/pawal-karki/SmartTube/releases/latest">
+    <button class="btn small" id="copy" type="button">Copy link</button>
+  </div>
+  <p class="help-note rv" style="--i:3">Menu names differ by brand. The setting you need is called Install unknown apps, or Unknown sources on older TVs.</p>
 </section>
 
 <section class="faq" id="faq" aria-labelledby="faq-h">
@@ -117,9 +150,7 @@
 </main>
 
 <footer class="foot">
-  <div class="blocks" aria-label="SmartTube">
-    <span style="--h:100%;--c:var(--accent);--t:var(--bg)">S</span><span style="--h:78%;--c:var(--ink);--t:var(--bg)">m</span><span style="--h:92%;--c:var(--hi);--t:var(--ink)">a</span><span style="--h:66%;--c:var(--accent);--t:var(--bg)">r</span><span style="--h:84%;--c:var(--muted);--t:var(--bg)">t</span><span style="--h:100%;--c:var(--ink);--t:var(--bg)">T</span><span style="--h:72%;--c:var(--hi);--t:var(--ink)">u</span><span style="--h:90%;--c:var(--accent);--t:var(--bg)">b</span><span style="--h:60%;--c:var(--muted);--t:var(--bg)">e</span>
-  </div>
+  <img class="logo" src="logo.svg" width="1902" height="600" alt="SmartTube by Pawal" loading="lazy">
   <div class="links">
     <a href="https://github.com/pawal-karki/SmartTube/releases/latest">Latest release</a>
     <a href="https://github.com/pawal-karki/SmartTube">Source</a>
