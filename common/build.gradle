@@ -71,16 +71,7 @@ dependencies {
 
     implementation project(':exoplayer-library')
     implementation project(':exoplayer-extension-okhttp')
-    implementation project(':exoplayer-extension-cronet')
-
-    // implementation 'com.amazon.android:exoplayer:' + amazonExoplayerVersion
-    // implementation 'com.amazon.android:extension-okhttp:' + amazonExoplayerVersion
-
-    // implementation 'com.google.android.exoplayer:exoplayer:' + exoplayerVersion
-    // implementation 'com.google.android.exoplayer:extension-okhttp:' + exoplayerVersion
-
-    // implementation 'com.github.amzn:exoplayer-amazon-port:' + amazonExoplayerJitpackVersion
-
+    implementation project(':exoplayer-extension-cronet')
     //////// END EXOPLAYER //////////
 
     implementation 'androidx.media:media:' + mediaXVersion // exoplayer fix
