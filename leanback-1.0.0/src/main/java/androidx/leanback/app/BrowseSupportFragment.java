@@ -1442,6 +1442,10 @@ public class BrowseSupportFragment extends BaseSupportFragment {
                 showBranding = isFirstRowWithContent(mSelectedPosition);
             }
             showSearch = isFirstRowWithContentOrPageRow(mSelectedPosition);
+            if (mIsPageRow && mMainFragmentAdapter != null) {
+                // MOD: hide the top bar once the page is scrolled down, it would cover the first row (title text)
+                showSearch &= mMainFragmentAdapter.mFragmentHost.mShowTitleView;
+            }
             int flags = 0;
             if (showBranding) flags |= TitleViewAdapter.BRANDING_VIEW_VISIBLE;
             if (showSearch) flags |= TitleViewAdapter.SEARCH_VIEW_VISIBLE;
