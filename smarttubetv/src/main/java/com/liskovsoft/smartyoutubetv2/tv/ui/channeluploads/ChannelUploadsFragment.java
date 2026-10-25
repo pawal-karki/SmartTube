@@ -29,6 +29,7 @@ public class ChannelUploadsFragment extends VideoGridFragment implements Channel
         mChannelUploadsPresenter.setView(this);
 
         mProgressBarManager = new ProgressBarManager();
+        mProgressBarManager.setSkeleton(true);
     }
 
     @Override

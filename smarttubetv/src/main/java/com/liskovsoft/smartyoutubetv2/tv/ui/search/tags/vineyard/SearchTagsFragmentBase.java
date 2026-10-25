@@ -58,6 +58,7 @@ public abstract class SearchTagsFragmentBase extends SearchSupportFragment
         super.onCreate(savedInstanceState);
 
         mProgressBarManager = new ProgressBarManager();
+        mProgressBarManager.setSkeleton(78, 238); // grey cards where the results appear (below the keyboard)
         mResultsPresenter = new CustomListRowPresenter();
         mResultsPresenter.enableChildRoundedCorners(getMainUIData().isUiTweakEnabled(MainUIData.UI_TWEAK_ROUNDED_CORNERS));
         mResultsAdapter = new ArrayObjectAdapter(mResultsPresenter);

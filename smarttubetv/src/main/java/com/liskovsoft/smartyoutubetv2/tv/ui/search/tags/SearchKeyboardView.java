@@ -73,7 +73,7 @@ public class SearchKeyboardView extends LinearLayout {
                 TextView key = text(22, state(rounded(FOCUS, dp(4)), dp(3), dp(3)), 0xFFFFFFFF);
                 key.setOnClickListener(v -> type(((TextView) v).getText().toString()));
                 mKeys[r * 7 + c] = key;
-                row.addView(key, new LayoutParams(dp(33), dp(33)));
+                row.addView(key, new LayoutParams(dp(33), dp(31)));
             }
             View extra;
             if (r == 0) {
@@ -87,7 +87,7 @@ public class SearchKeyboardView extends LinearLayout {
                 extra = null;
             }
             if (extra != null) {
-                LayoutParams lp = new LayoutParams(dp(40), dp(33));
+                LayoutParams lp = new LayoutParams(dp(40), dp(31));
                 lp.leftMargin = dp(8);
                 row.addView(extra, lp);
             }
@@ -166,7 +166,7 @@ public class SearchKeyboardView extends LinearLayout {
             tLp.leftMargin = dp(10);
             row.addView(text, tLp);
 
-            mSuggestions.addView(row, new LayoutParams(LayoutParams.MATCH_PARENT, dp(33))); // full-width pill like YouTube
+            mSuggestions.addView(row, new LayoutParams(LayoutParams.MATCH_PARENT, dp(30))); // full-width pill like YouTube
         }
         if (hadFocus) {
             focusFirstKey();

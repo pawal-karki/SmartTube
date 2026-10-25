@@ -37,6 +37,7 @@ public class ChannelFragment extends MultipleRowsFragment implements ChannelView
         mChannelPresenter.setView(this);
 
         mProgressBarManager = new ProgressBarManager();
+        mProgressBarManager.setSkeleton(true);
         if (MainUIData.instance(getContext()).isChannelSearchBarEnabled()) {
             addHeader(new ChannelHeaderCallback() {
                 @Override

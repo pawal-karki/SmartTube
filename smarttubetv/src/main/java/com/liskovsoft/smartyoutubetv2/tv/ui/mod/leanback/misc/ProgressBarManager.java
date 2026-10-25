@@ -43,6 +43,8 @@ public final class ProgressBarManager {
     boolean mIsShowing;
     private int mPosition = Gravity.CENTER;
     private boolean mSkeleton;
+    private int mSkeletonLeftDp = 78;  // browse: after the sidebar rail
+    private int mSkeletonTopDp = 106;  // browse: first row header
 
     private final Runnable showRunnable = new Runnable() {
         @Override
@@ -53,7 +55,7 @@ public final class ProgressBarManager {
 
             if (mIsShowing) {
                 if (mProgressBarView == null) {
-                    mProgressBarView = mSkeleton ? createSkeleton(rootView) : createProgressBar(rootView, mPosition);
+                    mProgressBarView = mSkeleton ? createSkeleton(rootView, mSkeletonLeftDp, mSkeletonTopDp) : createProgressBar(rootView, mPosition);
                 } else if (mUserProvidedProgressBar) {
                     mProgressBarView.setVisibility(View.VISIBLE);
                 }
@@ -173,10 +175,22 @@ public final class ProgressBarManager {
         mSkeleton = skeleton;
     }
 
+    /**
+     * Same as {@link #setSkeleton(boolean)} for screens whose first row starts elsewhere.
+     *
+     * @param leftDp where the rows start horizontally
+     * @param topDp  where the first row header starts vertically
+     */
+    public void setSkeleton(int leftDp, int topDp) {
+        mSkeleton = true;
+        mSkeletonLeftDp = leftDp;
+        mSkeletonTopDp = topDp;
+    }
+
     private static final int SKELETON_COLOR = 0xFF272727;
 
     // Mirrors the browse rows layout: rail 78dp, header at 106dp, thumbs at 146dp, 16dp gaps
-    private static View createSkeleton(ViewGroup rootView) {
+    private static View createSkeleton(ViewGroup rootView, int leftDp, int topDp) {
         Context context = rootView.getContext();
         float dp = context.getResources().getDisplayMetrics().density;
         Pair<Integer, Integer> card = GridFragmentHelper.getCardDimensPx(context, R.dimen.card_width, R.dimen.card_height,
@@ -186,7 +200,7 @@ public final class ProgressBarManager {
 
         LinearLayout skeleton = new LinearLayout(context);
         skeleton.setOrientation(LinearLayout.VERTICAL);
-        skeleton.setPadding(Math.round(78 * dp), Math.round(106 * dp), 0, 0);
+        skeleton.setPadding(Math.round(leftDp * dp), Math.round(topDp * dp), 0, 0);
 
         for (int row = 0; row < 2; row++) {
             LinearLayout.LayoutParams headerParams = bar(context, skeleton, Math.round(180 * dp), Math.round(22 * dp), 0);
