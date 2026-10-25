@@ -35,12 +35,14 @@ public class HeaderMarqueeTextViewCompat extends MarqueeTextViewCompat {
     }
 
     /**
-     * Sidebar rail (collapsed) squeezes the label to a few px: hide it instead of showing an ellipsis.
+     * Sidebar rail (collapsed) squeezes the label: fade it out as soon as it gets narrower than its text
+     * (fully gone at half width) so a squashed or ellipsized label is never visible during the animation.
      */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        setAlpha(w < 20 * getResources().getDisplayMetrics().density ? 0f : 1f);
+        float full = Math.min(getPaint().measureText(getText().toString()), getMaxWidth());
+        setAlpha(full <= 0 || w >= full ? 1f : Math.max(0f, (w / full - 0.5f) * 2f));
         updateParentDivider();
     }
 

@@ -15,7 +15,7 @@ import com.liskovsoft.youtubeapi.service.YouTubeServiceManager;
  */
 public final class FormatInfoPrefetcher {
     private static final String TAG = FormatInfoPrefetcher.class.getSimpleName();
-    private static final long DELAY_MS = 600;   // don't prefetch while the user is quickly scrolling
+    private static final long DELAY_MS = 1200;  // only once the user stops on a card: each prefetch is heavy (network, JSON, V8) on weak TV CPUs
     private static final Handler sHandler = new Handler(Looper.getMainLooper());
     private static Disposable sAction;
     private static String sLastVideoId;

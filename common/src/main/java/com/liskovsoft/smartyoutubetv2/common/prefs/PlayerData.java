@@ -99,6 +99,7 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
     private long mAfrSwitchTimeMs;
     private List<String> mLastAudioLanguages;
     private final Runnable mPersistStateInt = this::persistStateInt;
+    private boolean mIsCleanControlsApplied; // MOD
     private boolean mIsLegacyCodecsForced;
     private boolean mIsAudioDelayEnabled;
 
@@ -846,6 +847,17 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
         mLastAudioLanguages = Helpers.parseStrList(split, 60);
         mIsVideoFlipEnabled = Helpers.parseBoolean(split, 61, false);
         mIsAudioDelayEnabled = Helpers.parseBoolean(split, 62, false);
+        mIsCleanControlsApplied = Helpers.parseBoolean(split, 63, false);
+
+        // MOD: clean controls bar (no clock, quality info, remaining time), once, so existing installs get it too.
+        // Still can be re-enabled in the settings.
+        if (!mIsCleanControlsApplied) {
+            mIsClockEnabled = false;
+            mIsQualityInfoEnabled = false;
+            mIsRemainingTimeEnabled = false;
+            mIsCleanControlsApplied = true;
+            persistNow();
+        }
 
         if (speeds != null) {
             for (String speedSpec : speeds) {
@@ -883,7 +895,7 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
                 mIsNumberKeySeekEnabled, mIsSkip24RateEnabled, mAfrPauseMs, mIsLiveChatEnabled, mLastSubtitleFormats, mLastSpeed, mRotationAngle,
                 mZoomPercents, mPlaybackMode, mAudioLanguage, mSubtitleLanguage, mEnabledSubtitlesPerChannel, mIsSubtitlesPerChannelEnabled,
                 mIsSpeedPerChannelEnabled, Helpers.mergeArray(mSpeeds.values().toArray()), mPitch, mIsSkipShortsEnabled, mLastAudioLanguages,
-                mIsVideoFlipEnabled, mIsAudioDelayEnabled
+                mIsVideoFlipEnabled, mIsAudioDelayEnabled, mIsCleanControlsApplied
         ));
     }
 

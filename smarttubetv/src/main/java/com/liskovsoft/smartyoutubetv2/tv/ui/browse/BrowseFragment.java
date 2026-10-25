@@ -135,6 +135,8 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
                 (viewHolder, row) -> {
                     long headerId = row.getHeaderItem().getId();
 
+                    flushPendingSelection(); // page swap is delayed while the focus moves
+
                     if (headerId == ID_ACCOUNT) {
                         AccountSettingsPresenter.instance(getContext()).show();
                         return;

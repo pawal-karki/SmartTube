@@ -94,6 +94,7 @@ public class PlayerTweaksData implements ProfileChangeListener {
     private int mScreenOffDimmingPercents;
     private boolean mIsUIAnimationsEnabled;
     private boolean mIsLikesCounterEnabled;
+    private boolean mIsCleanSubtitleApplied; // MOD
     private boolean mIsChapterNotificationEnabled;
     private boolean mIsPlayerUiOnNextEnabled;
     private boolean mIsPlayerAutoVolumeEnabled;
@@ -764,6 +765,15 @@ public class PlayerTweaksData implements ProfileChangeListener {
         mIsQuickSkipVideosAltEnabled = Helpers.parseBoolean(split, 58, false);
         mIsAudioTimeStretchingEnabled = Helpers.parseBoolean(split, 59, true);
         mIsQueueRespectsPlaybackMode = Helpers.parseBoolean(split, 60, false);
+        mIsCleanSubtitleApplied = Helpers.parseBoolean(split, 61, false);
+
+        // MOD: no likes/dislikes/subscribers under the player title, once, so existing installs get it too.
+        // Still can be re-enabled in the settings.
+        if (!mIsCleanSubtitleApplied) {
+            mIsLikesCounterEnabled = false;
+            mIsCleanSubtitleApplied = true;
+            persistNow();
+        }
 
         updateDefaultValues();
     }
@@ -791,7 +801,8 @@ public class PlayerTweaksData implements ProfileChangeListener {
                 mIsUnsafeAudioFormatsEnabled, null, mIsLoopShortsEnabled, mIsQuickSkipShortsEnabled, mIsRememberPositionOfLiveVideosEnabled,
                 mIsOculusQuestFixEnabled, null, mIsExtraLongSpeedListEnabled, mIsQuickSkipVideosEnabled, mIsNetworkErrorFixingDisabled, mIsCommentsPlacedLeft,
                 null, mIsAudioFocusEnabled, mIsDontResizeVideoToFitDialogEnabled, mIsSuggestionsHorizontallyScrolled,
-                mIsQuickSkipShortsAltEnabled, mIsQuickSkipVideosAltEnabled, mIsAudioTimeStretchingEnabled, mIsQueueRespectsPlaybackMode
+                mIsQuickSkipShortsAltEnabled, mIsQuickSkipVideosAltEnabled, mIsAudioTimeStretchingEnabled, mIsQueueRespectsPlaybackMode,
+                mIsCleanSubtitleApplied
                 ));
     }
 

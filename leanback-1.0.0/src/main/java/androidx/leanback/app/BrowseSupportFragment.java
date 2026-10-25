@@ -89,6 +89,8 @@ public class BrowseSupportFragment extends BaseSupportFragment {
     static final String HEADER_SHOW = "headerShow";
     private static final String IS_PAGE_ROW = "isPageRow";
     private static final String CURRENT_SELECTED_POSITION = "currentSelectedPosition";
+    // MOD: build a sidebar page only once the focus settles there, not for every section passed through
+    private static final long HEADER_SELECTION_DELAY_MS = 200;
 
     /**
      * State to hide headers fragment.
@@ -236,6 +238,10 @@ public class BrowseSupportFragment extends BaseSupportFragment {
         }
 
         void post(int position, int type, boolean smooth) {
+            post(position, type, smooth, 0);
+        }
+
+        void post(int position, int type, boolean smooth, long delayMs) {
             // Posting the set selection, rather than calling it immediately, prevents an issue
             // with adapter changes.  Example: a row is added before the current selected row;
             // first the fast lane view updates its selection, then the rows fragment has that
@@ -247,9 +253,21 @@ public class BrowseSupportFragment extends BaseSupportFragment {
                 mSmooth = smooth;
                 mBrowseFrame.removeCallbacks(this);
                 if (!mStopped) {
-                    mBrowseFrame.post(this);
+                    mBrowseFrame.postDelayed(this, delayMs);
                 }
             }
+        }
+
+        /**
+         * MOD: apply a pending (delayed) selection right now
+         */
+        boolean flush() {
+            if (mType == TYPE_INVALID) {
+                return false;
+            }
+            mBrowseFrame.removeCallbacks(this);
+            run();
+            return true;
         }
 
         @Override
@@ -1052,6 +1070,9 @@ public class BrowseSupportFragment extends BaseSupportFragment {
         if (!isHeadersDataReady()) {
             return;
         }
+        if (!withHeaders) {
+            mSetSelectionRunnable.flush(); // MOD: open the focused page, not the previous one
+        }
         mShowingHeaders = withHeaders;
         mMainFragmentAdapter.onTransitionPrepare();
         mMainFragmentAdapter.onTransitionStart();
@@ -1121,7 +1142,9 @@ public class BrowseSupportFragment extends BaseSupportFragment {
             } else if (direction == towardEnd) {
                 if (isVerticalScrolling()) {
                     return focused;
-                } else if (mMainFragment != null && mMainFragment.getView() != null) {
+                }
+                flushPendingSelection(); // MOD: move focus into the focused page, not the previous one
+                if (mMainFragment != null && mMainFragment.getView() != null) {
                     return mMainFragment.getView();
                 }
                 return focused;
@@ -1133,6 +1156,15 @@ public class BrowseSupportFragment extends BaseSupportFragment {
             }
         }
     };
+
+    /**
+     * MOD: sidebar page swaps are delayed while the focus moves, apply a pending one immediately
+     */
+    public void flushPendingSelection() {
+        if (mSetSelectionRunnable.flush() && !getChildFragmentManager().isDestroyed()) {
+            getChildFragmentManager().executePendingTransactions();
+        }
+    }
 
     final boolean isHeadersDataReady() {
         return mAdapter != null && mAdapter.size() != 0;
@@ -1555,7 +1587,8 @@ public class BrowseSupportFragment extends BaseSupportFragment {
             // Layout of Headers Fragment in hidden state may triggers the onRowSelected and
             // reset to 0. Skip in that case.
             if (mShowingHeaders && !isActionRow(row)) { // MOD: selection stays on the current page
-                onRowSelected(position);
+                mSetSelectionRunnable.post(position, SetSelectionRunnable.TYPE_INTERNAL_SYNC, true,
+                        HEADER_SELECTION_DELAY_MS);
             }
         }
     };

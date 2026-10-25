@@ -216,6 +216,8 @@ public final class ProgressBarManager {
         pulse.setDuration(800);
         pulse.setRepeatMode(Animation.REVERSE);
         pulse.setRepeatCount(Animation.INFINITE);
+        // pulse just fades a cached texture instead of redrawing ~45 rounded views every frame (weak TV GPUs)
+        skeleton.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         skeleton.startAnimation(pulse);
 
         // index 0: stay below the sidebar and title bar
