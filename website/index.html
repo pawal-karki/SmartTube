@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartTube for slow TVs</title>
+<meta name="description" content="A TV-first video client for Android TV and TV boxes, tuned for weak hardware. Free APK download.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff2a36'/%3E%3Crect x='7' y='9' width='18' height='14' rx='4' fill='none' stroke='%230f0f0f' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="bar">
+  <a class="mark" href="#top">SmartTube</a>
+  <nav aria-label="Main">
+    <a href="#what">What changed</a>
+    <a href="#install">Install</a>
+    <a href="#faq">Questions</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-shape" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <h1 class="rv">Smooth video<br>on slow TVs</h1>
+    <p class="rv" style="--i:1">A TV-first interface for Android TV and TV boxes, tuned for four-core, 2&nbsp;GB hardware. Free, no Google services needed.</p>
+    <a class="btn rv" style="--i:2" href="https://github.com/pawal-karki/SmartTube/releases/latest">Download the APK</a>
+  </div>
+  <figure class="hero-shot">
+    <img class="a" src="img/home-rail.jpg" width="1920" height="1080" alt="The home screen with the sidebar collapsed to an icon rail.">
+    <img class="b" src="img/home-sidebar.jpg" width="1920" height="1080" alt="The same screen with the sidebar open and a white pill on Home." aria-hidden="true">
+  </figure>
+</section>
+
+<section class="try" id="try" aria-labelledby="try-h">
+  <figure class="stage" id="stage">
+    <img class="on" src="img/home-rail.jpg" width="1920" height="1080" alt="Home with the sidebar collapsed to an icon rail." data-name="Home" data-text="The sidebar sits as a rail of icons so the rows get the screen. Every card is a rounded 16:9 thumbnail with two lines of title, then the channel and views.">
+    <img src="img/home-sidebar.jpg" width="1920" height="1080" alt="Home with the sidebar open, a white pill on Home." data-name="Sidebar" data-text="Move left and the rail opens with labels and a white pill on the current page. The top bar with the mic and search follows it.">
+    <img src="img/shorts.jpg" width="1920" height="1080" alt="Shorts as a grid of tall rounded cards." data-name="Shorts" data-text="Shorts get their own grid of tall cards. Titles are cut at two lines, channel and handle underneath.">
+    <img src="img/gaming.jpg" width="1920" height="1080" alt="The Gaming page with 4K chips under the first two videos." data-name="Gaming" data-text="Category pages reuse the same cards. Small grey chips mark 4K and Auto-dubbed before the view count.">
+  </figure>
+  <div class="try-side">
+    <div class="tabs" role="tablist" aria-label="Screens">
+      <button role="tab" aria-selected="true" class="rv">Home</button>
+      <button role="tab" aria-selected="false" class="rv" style="--i:1">Sidebar</button>
+      <button role="tab" aria-selected="false" class="rv" style="--i:2">Shorts</button>
+      <button role="tab" aria-selected="false" class="rv" style="--i:3">Gaming</button>
+    </div>
+    <div>
+      <h2 id="try-h" class="rv">Four screens, one remote</h2>
+      <p id="try-text" class="rv" style="--i:1">The sidebar sits as a rail of icons so the rows get the screen. Every card is a rounded 16:9 thumbnail with two lines of title, then the channel and views.</p>
+    </div>
+    <div class="cells">
+      <button class="cell" id="prev" type="button">&larr; Previous screen</button>
+      <button class="cell alt" id="next" type="button">Next screen &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<section class="board-wrap" id="what" aria-labelledby="what-h">
+  <div class="board">
+    <div class="tile t1"><img src="img/home-sidebar.jpg" alt="" loading="lazy"><p class="cap"><b>A sidebar that gets out of the way</b>It collapses to an icon rail and opens with labels.</p></div>
+    <div class="tile t2" data-ui><span class="chip">4K</span><span class="chip">Auto-dubbed</span><p class="cap"><b>Badges where you look</b>Chips sit before the views line.</p></div>
+    <div class="tile t5"><img src="img/gaming.jpg" alt="" loading="lazy"><p class="cap"><b>Focus you can see</b>A white ring. No zoom, no shadow.</p></div>
+    <div class="tile t4"><h2 id="what-h">Made for slow hardware</h2></div>
+    <div class="tile t3"><span class="big">1.5 s</span><p class="cap"><b>Player warm-up</b>Starts after launch, not ten seconds in.</p></div>
+    <div class="tile t6"><span class="big">1080p</span><p class="cap"><b>Default cap</b>A faster first frame.</p></div>
+    <div class="tile t7"><span class="big">No spinner</span><p class="cap"><b>Skeleton rows</b>Show where content will land.</p></div>
+    <div class="tile t8"><p class="cap"><b>A clean player</b>Clock, quality info, remaining time and likes stay off until you switch them on in settings.</p></div>
+    <div class="tile t9"><span class="big">Free</span><p class="cap"><b>No Google services</b>Runs without them.</p></div>
+  </div>
+</section>
+
+<section class="steps" aria-labelledby="steps-h">
+  <h2 id="steps-h" class="rv">Install in minutes</h2>
+  <div class="bar3" data-ui>
+    <div class="seg s1"><p class="dur">One minute</p><p>First, download the file for your TV. Not sure which? Take the universal one.</p></div>
+    <div class="seg s2"><p class="dur">A few minutes</p><p>Then move it to the TV with a USB stick, or open the link in the Downloader app.</p></div>
+    <div class="seg s3"><p class="dur">One minute</p><p>Last, open it from the file manager and allow installs from unknown sources.</p></div>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-h">
+  <h2 id="faq-h" class="rv">Questions</h2>
+  <div class="cards">
+    <details name="faq" open style="--i:0"><summary><span class="tab">Download</span><span class="q">Which file do I download?</span></summary><p>Most Android TVs and boxes run 32-bit software even on 64-bit chips. If the 64-bit file will not install and says no matching ABIs, take the 32-bit one. The universal file works on both and is about 40&nbsp;MB.</p></details>
+    <details name="faq" style="--i:1"><summary><span class="tab">Cost</span><span class="q">Is it free?</span></summary><p>Yes. It is a fork of the open-source SmartTube project and keeps its MIT licence.</p></details>
+    <details name="faq" style="--i:2"><summary><span class="tab">Account</span><span class="q">Do I need Google services?</span></summary><p>No. It does not need them, which is why it runs on boxes that do not ship them.</p></details>
+    <details name="faq" style="--i:3"><summary><span class="tab">Speed</span><span class="q">Why is it lighter on slow TVs?</span></summary><p>Pages are only built once the focus settles, loading placeholders are cached textures, prefetching waits until you stop on a card, and the default quality is capped at 1080p.</p></details>
+    <details name="faq" style="--i:4"><summary><span class="tab">Updates</span><span class="q">Can I update over another build?</span></summary><p>Only over a build signed with the same key. These builds use a debug key, so if you installed a different build of the app first, remove it before installing this one.</p></details>
+  </div>
+</section>
+
+<section class="cta" id="install" aria-labelledby="cta-h">
+  <div class="cta-copy">
+    <h2 id="cta-h" class="rv">Try it tonight</h2>
+    <p class="rv" style="--i:1">The download comes from GitHub. Open it on the TV, or copy it over, then install it from the file manager.</p>
+  </div>
+  <form class="dialog rv" data-ui id="pick" onsubmit="return false">
+    <h3>Which TV do you have?</h3>
+    <div class="seg3" role="radiogroup" aria-label="Which file">
+      <label><input type="radio" name="abi" value="universal" checked><span>Not sure</span></label>
+      <label><input type="radio" name="abi" value="armeabi-v7a"><span>32-bit</span></label>
+      <label><input type="radio" name="abi" value="arm64-v8a"><span>64-bit</span></label>
+    </div>
+    <p id="pick-note">Universal file, about 40&nbsp;MB. Works on every box.</p>
+    <a class="btn dark" id="pick-go" href="https://github.com/pawal-karki/SmartTube/releases/latest">Download</a>
+  </form>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="blocks" aria-label="SmartTube">
+    <span style="--h:100%;--c:var(--accent);--t:var(--bg)">S</span><span style="--h:78%;--c:var(--ink);--t:var(--bg)">m</span><span style="--h:92%;--c:var(--hi);--t:var(--ink)">a</span><span style="--h:66%;--c:var(--accent);--t:var(--bg)">r</span><span style="--h:84%;--c:var(--muted);--t:var(--bg)">t</span><span style="--h:100%;--c:var(--ink);--t:var(--bg)">T</span><span style="--h:72%;--c:var(--hi);--t:var(--ink)">u</span><span style="--h:90%;--c:var(--accent);--t:var(--bg)">b</span><span style="--h:60%;--c:var(--muted);--t:var(--bg)">e</span>
+  </div>
+  <div class="links">
+    <a href="https://github.com/pawal-karki/SmartTube/releases/latest">Latest release</a>
+    <a href="https://github.com/pawal-karki/SmartTube">Source</a>
+    <a href="https://github.com/yuliskov/SmartTube">Original project</a>
+    <a href="#faq">Questions</a>
+    <p>Based on SmartTube by yuliskov, MIT licence. Screens are captured from a real Android TV box. Video thumbnails belong to their channels.</p>
+  </div>
+  <div class="last"><span>SmartTube beta 32.68</span><a class="btn small" href="#top">Back to top</a></div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
