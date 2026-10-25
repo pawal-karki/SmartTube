@@ -176,6 +176,18 @@ public final class ProgressBarManager {
     }
 
     /**
+     * Moves the skeleton (also the one already shown) horizontally, e.g. when the sidebar opens or closes.
+     */
+    public void setSkeletonLeft(int leftDp) {
+        mSkeletonLeftDp = leftDp;
+
+        if (mSkeleton && mProgressBarView != null && !mUserProvidedProgressBar) {
+            float dp = mProgressBarView.getResources().getDisplayMetrics().density;
+            mProgressBarView.setPadding(Math.round(leftDp * dp), mProgressBarView.getPaddingTop(), 0, 0);
+        }
+    }
+
+    /**
      * Same as {@link #setSkeleton(boolean)} for screens whose first row starts elsewhere.
      *
      * @param leftDp where the rows start horizontally

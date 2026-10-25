@@ -81,6 +81,13 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
         mBrowsePresenter.setView(this);
         mProgressBarManager = new ProgressBarManager();
         mProgressBarManager.setSkeleton(true);
+        updateSkeletonLeft(true); // the sidebar starts open
+        setBrowseTransitionListener(new BrowseTransitionListener() {
+            @Override
+            public void onHeadersTransitionStart(boolean withHeaders) {
+                updateSkeletonLeft(withHeaders);
+            }
+        });
 
         setupAdapter();
         setupFragmentFactory();
@@ -524,6 +531,14 @@ public class BrowseFragment extends BrowseSupportFragment implements BrowseView 
         if (isShowingTitle() && getTitleView() != null && getTitleView().getVisibility() != View.VISIBLE) {
             getTitleView().setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * Rows start after the sidebar: skeleton must not sit under it. Collapsed rows are ~10dp to the left.
+     */
+    private void updateSkeletonLeft(boolean sidebarOpen) {
+        int rowsStartDp = Math.round(getResources().getDimension(R.dimen.lb_browse_rows_margin_start) / getResources().getDisplayMetrics().density);
+        mProgressBarManager.setSkeletonLeft(sidebarOpen ? rowsStartDp : rowsStartDp - 10);
     }
 
     @Override

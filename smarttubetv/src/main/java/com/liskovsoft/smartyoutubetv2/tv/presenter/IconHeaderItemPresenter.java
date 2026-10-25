@@ -1,6 +1,7 @@
 package com.liskovsoft.smartyoutubetv2.tv.presenter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -92,6 +93,10 @@ public class IconHeaderItemPresenter extends RowHeaderPresenter {
             } else {
                 Drawable icon = mResId > 0 ? ContextCompat.getDrawable(rootView.getContext(), mResId) : mDefaultIcon;
                 iconView.setImageDrawable(icon);
+                // MOD: white icons, only Music is YouTube red (also resets the tint cleared for a recycled avatar row)
+                ImageViewCompat.setImageTintList(iconView, headerItem.getId() == MediaGroup.TYPE_MUSIC ?
+                        ColorStateList.valueOf(ContextCompat.getColor(rootView.getContext(), R.color.red)) :
+                        ContextCompat.getColorStateList(rootView.getContext(), R.color.header_item_text));
             }
         }
 

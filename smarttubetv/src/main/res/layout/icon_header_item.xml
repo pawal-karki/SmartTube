@@ -8,13 +8,13 @@
     android:background="@drawable/header_item_bg"
     android:minHeight="39dp"
     android:minWidth="222dp"
-    android:paddingStart="14dp"
+    android:paddingStart="15dp"
     android:paddingEnd="12dp">
 
     <ImageView
         android:id="@+id/header_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:duplicateParentState="true"
         android:tint="@color/header_item_text"
         android:contentDescription="@string/header_icon" />
@@ -23,7 +23,7 @@
         android:id="@+id/header_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="14dp"
         android:duplicateParentState="true"
         android:textColor="@color/header_item_text"
         android:textSize="16sp"
