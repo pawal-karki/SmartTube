@@ -13,6 +13,7 @@
         android:layout_height="@dimen/settings_image_size"
         android:layout_gravity="center"
         android:layout_margin="@dimen/settings_image_padding"
+        android:alpha="0.8"
         android:visibility="invisible"
         tools:ignore="ContentDescription"/>
     <com.liskovsoft.smartyoutubetv2.tv.ui.widgets.marqueetextviewcompat.MarqueeTextViewCompat
