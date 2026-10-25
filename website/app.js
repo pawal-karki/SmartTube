@@ -32,7 +32,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // The download picker: points the button at the file for the chosen TV.
-const base = 'https://github.com/pawal-karki/SmartTube/releases/latest/download/SmartTube_beta_32.68_';
+const base = 'https://github.com/pawal-karki/SmartTube/releases/latest/download/SmartTube_Pawal_32.68_';
 const notes = {
   universal: 'Universal file, about 40 MB. Works on every box.',
   'armeabi-v7a': '32-bit file, about 27 MB. For most boxes, even ones with 64-bit chips.',
